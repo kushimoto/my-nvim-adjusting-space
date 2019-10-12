@@ -7,24 +7,21 @@ endif
 set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('$HOME/.cache/dein')
-  call dein#begin('$HOME/.cache/dein')
+if dein#load_state("$HOME/.cache/dein")
+  call dein#begin("$HOME/.cache/dein")
 
   " Let dein manage dein
   " Required:
   call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/vimproc.vim', {'build': 'make'})
   call dein#add('Shougo/vimshell.vim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
+  if has('nvim')
+     call dein#add('Shougo/deoplete.nvim')
+     call dein#add('Shougo/deoplete-clangx')
+     call dein#add('Shougo/neco-vim')
+     call dein#add('Shougo/neco-syntax')
+     call dein#add('ujihisa/neco-look')
   endif
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('Shougo/deoplete-clangx')
-  call dein#add('Shougo/neco-vim')
-  call dein#add('Shougo/neco-syntax')
-  call dein#add('ujihisa/neco-look')
-  call dein#add('lvht/phpcd.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('tomtom/tcomment_vim')
   call dein#add('rbtnn/game_engine.vim')
@@ -32,7 +29,9 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#add('rbtnn/mario.vim')
   call dein#add('tomasr/molokai')
   call dein#add('osyo-manga/vim-over')
-  call dein#add('fatih/vim-go')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('takkii/Tea_Coffee')
+  call dein#add('kushimoto/jph')
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
@@ -60,6 +59,7 @@ set number
 colorscheme molokai
 
 "deoplete settings
+let g:python3_host_prog = expand('~/usr/local/python/bin/python3')
 let g:deoplete#enable_at_startup = 1
 " let g:deoplete#enable_yarp = 1
 
@@ -80,5 +80,7 @@ autocmd VimEnter * call feedkeys("x", "n")
 autocmd VimEnter * execute 'NERDTreeToggle'
 
 "cc.vim option
-" noremap <silent><C-c> :source ~/.vim/cc.vim<CR>
-" golang
+noremap <silent><C-c> :source ~/.vim/cc.vim<CR>
+"JPH.vim setting
+noremap <silent><C-j> :Jph<CR>
+let g:jph#window_setting = 0
