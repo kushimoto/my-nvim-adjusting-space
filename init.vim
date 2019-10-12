@@ -33,6 +33,7 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#add('tomasr/molokai')
   call dein#add('osyo-manga/vim-over')
   call dein#add('fatih/vim-go')
+  call dein#add('deoplete-plugins/deoplete-go', {'build': 'make'})
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
@@ -78,7 +79,6 @@ autocmd VimEnter * call feedkeys("l", "n")
 autocmd VimEnter * call feedkeys("\<C-w>", "n")
 autocmd VimEnter * call feedkeys("x", "n")
 autocmd VimEnter * execute 'NERDTreeToggle'
-
-"cc.vim option
-" noremap <silent><C-c> :source ~/.vim/cc.vim<CR>
 " golang
+let g:deoplete#sources#go#gocode_binary = '$GOPATH/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
