@@ -50,8 +50,8 @@ else
 fi
 
 # deoplete.nvim でいるやつ入れる
+echo "$password" | sudo -S pip install --user pynvim
 echo "$password" | sudo -S pip3 install --user pynvim
-echo "$password" | sudo -S pip3 install --user neovim
 
 # nvim ディレクトリがなければ作成
 if [ ! -d ~/.config/nvim ]; then
@@ -95,4 +95,5 @@ fi
 
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.backup
 cd `dirname $0`
+pwd
 cp init.vim ~/.config/nvim/init.vim
