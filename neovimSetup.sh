@@ -94,4 +94,5 @@ else
 fi
 
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.backup
+cd `dirname $0`
 cp init.vim ~/.config/nvim/init.vim
