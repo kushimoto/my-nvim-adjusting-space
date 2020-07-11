@@ -93,15 +93,5 @@ else
 	echo -e "[\e[42m  OK  \033[m] dein.vim is already exists."
 fi
 
-# nvim ディレクトリがあればいったん削除して再取得
-if [ -d ./nvim ] ;then
-	echo -e "[\e[43mNOTICE\033[m] Deleting directory of nvim ...."
-	echo "$password" | sudo -S rm -rf nvim
-fi
-
-echo -e "[\e[43mNOTICE\033[m] Start a git clone."
-git clone https://github.com/kushimoto/nvim
-cd nvim
-
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.backup
 cp init.vim ~/.config/nvim/init.vim
