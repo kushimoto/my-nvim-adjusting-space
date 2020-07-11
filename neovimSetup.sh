@@ -119,3 +119,5 @@ fi
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.backup
 # init.vim を自分のオリジナルで上書き
 cp ${CURRENT_DIR}/init.vim ~/.config/nvim/init.vim
+# toml をコピー
+cp -r ${CURRENT_DIR}/toml ~/.config/nvim/
