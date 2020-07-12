@@ -11,7 +11,7 @@ echo "$password" | sudo -S apt -y update
 echo "$password" | sudo -S apt -y upgrade
 
 # 必要なものを先に入れとく～
-echo "$password" | sudo -S apt -y install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+echo "$password" | sudo -S apt -y install git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
 
 # look コマンドの辞書を入れる(neco-lookプラグインで使用するため)
 echo "$password" | sudo -S apt -y install wamerican-huge
