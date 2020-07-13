@@ -13,9 +13,6 @@ echo "$password" | sudo -S apt -y upgrade
 # 必要なものを先に入れとく～
 echo "$password" | sudo -S apt -y install git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
 
-# look コマンドの辞書を入れる(neco-lookプラグインで使用するため)
-echo "$password" | sudo -S apt -y install wamerican-huge
-
 # NeoVim が入っていなかったらインストール
 if !(type "nvim" > /dev/null 2>&1); then
 	# neovim ディレクトリがあるなら
@@ -41,6 +38,50 @@ else
 	echo -e "[\e[42m  OK  \033[m] NeoVim is already exists."
 fi
 
+# nodejs がなければ
+if !(type "nodejs" > /dev/null 2>&1); then
+	# メッセージ出力
+	echo -e "[\e[43mNOTICE\033[m] Start the nodejs installation."
+	# nodejs をインストール
+	echo "$password" | sudo -S apt -y install nodejs
+else
+	# メッセージ出力
+	echo -e "[\e[42m  OK  \033[m] nodejs is already exists."
+fi
+
+# npm がなければ
+if !(type "npm" > /dev/null 2>&1); then
+	# メッセージ出力
+	echo -e "[\e[43mNOTICE\033[m] Start the npm installation."
+	# npm をインストール
+	echo "$password" | sudo -S apt -y install npm
+else
+	# メッセージ出力
+	echo -e "[\e[42m  OK  \033[m] npm is already exists."
+fi
+
+# python がなければ
+if !(type "python" > /dev/null 2>&1); then
+	# メッセージ出力
+	echo -e "[\e[43mNOTICE\033[m] Start the python installation."
+	# python をインストール
+	echo "$password" | sudo -S apt -y install python
+else
+	# メッセージ出力
+	echo -e "[\e[42m  OK  \033[m] Python is already exists."
+fi
+
+# pip がなければ
+if !(type "pip" > /dev/null 2>&1); then
+	# メッセージ出力
+	echo -e "[\e[43mNOTICE\033[m] Start the pip installation."
+	# pip をインストール
+	echo "$password" | sudo -S apt -y install python-pip
+else
+	# メッセージ出力
+	echo -e "[\e[42m  OK  \033[m] PIP is already exists."
+fi
+
 # python3 がなければ
 if !(type "python3" > /dev/null 2>&1); then
 	# メッセージ出力
@@ -63,7 +104,8 @@ else
 	echo -e "[\e[42m  OK  \033[m] PIP3 is already exists."
 fi
 
-# deoplete.nvim でいるやつ入れる
+# propider を入れる
+echo "$password" | sudo -S npm install -g neovim
 pip install --user pynvim
 pip3 install --user pynvim
 
@@ -119,5 +161,7 @@ fi
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.backup
 # init.vim を自分のオリジナルで上書き
 cp ${CURRENT_DIR}/init.vim ~/.config/nvim/init.vim
+# 
+echo "{}" > ~/.config/nvim/coc-settings.json
 # toml をコピー
 cp -r ${CURRENT_DIR}/toml ~/.config/nvim/
