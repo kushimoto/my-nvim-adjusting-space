@@ -43,7 +43,8 @@ if !(type "nodejs" > /dev/null 2>&1); then
 	# メッセージ出力
 	echo -e "[\e[43mNOTICE\033[m] Start the nodejs installation."
 	# nodejs をインストール
-	echo "$password" | sudo -S apt -y install nodejs
+	curl -sL install-node.now.sh/lts > install-nodejs.sh
+	echo "$password" | sudo -S bash install-nodejs.sh
 else
 	# メッセージ出力
 	echo -e "[\e[42m  OK  \033[m] nodejs is already exists."
