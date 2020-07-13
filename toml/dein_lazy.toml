@@ -5,3 +5,4 @@ repo = 'neoclide/coc.nvim'
 rev = 'release'
 merged = '0'
 on_event = 'InsertEnter'
+on_ft = ['html', 'css', 'javascript', 'php', 'c', 'java', 'vim']
