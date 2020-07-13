@@ -14,3 +14,6 @@ repo = 'tomasr/molokai'
 
 [[plugins]]
 repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'kushimoto/cocLspInstaller'
