@@ -32,6 +32,13 @@ endif
 filetype plugin indent on
 syntax enable
 
+" plugin remove check {{{
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endif
+" }}}
 "End dein Scripts-------------------------
 
 set backspace=indent,eol,start
