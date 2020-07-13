@@ -39,7 +39,7 @@ else
 fi
 
 # nodejs がなければ
-if !(type "nodejs" > /dev/null 2>&1); then
+if !(type "node" > /dev/null 2>&1); then
 	# メッセージ出力
 	echo -e "[\e[43mNOTICE\033[m] Start the nodejs installation."
 	# nodejs をインストール
