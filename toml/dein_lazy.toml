@@ -1,1 +1,7 @@
 # lazy
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+merged = '0'
+on_event = 'InsertEnter'
