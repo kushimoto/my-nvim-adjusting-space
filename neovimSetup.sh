@@ -11,7 +11,7 @@ echo "$password" | sudo -S apt -y update
 echo "$password" | sudo -S apt -y upgrade
 
 # 必要なものを先に入れとく～
-echo "$password" | sudo -S apt -y install git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+echo "$password" | sudo -S apt -y install curl git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
 
 # NeoVim が入っていなかったらインストール
 if !(type "nvim" > /dev/null 2>&1); then
@@ -59,28 +59,6 @@ if !(type "npm" > /dev/null 2>&1); then
 else
 	# メッセージ出力
 	echo -e "[\e[42m  OK  \033[m] npm is already exists."
-fi
-
-# python がなければ
-if !(type "python" > /dev/null 2>&1); then
-	# メッセージ出力
-	echo -e "[\e[43mNOTICE\033[m] Start the python installation."
-	# python をインストール
-	echo "$password" | sudo -S apt -y install python
-else
-	# メッセージ出力
-	echo -e "[\e[42m  OK  \033[m] Python is already exists."
-fi
-
-# pip がなければ
-if !(type "pip" > /dev/null 2>&1); then
-	# メッセージ出力
-	echo -e "[\e[43mNOTICE\033[m] Start the pip installation."
-	# pip をインストール
-	echo "$password" | sudo -S apt -y install python-pip
-else
-	# メッセージ出力
-	echo -e "[\e[42m  OK  \033[m] PIP is already exists."
 fi
 
 # python3 がなければ
