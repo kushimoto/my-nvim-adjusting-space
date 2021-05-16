@@ -1,0 +1,12 @@
+# Common settings
+
+version: '3'
+services:
+  editor:
+    build: ./editor
+    container_name: ${APP_NAME}-editor-container
+    tty: true
+    volumes:
+      - ./editor/config:/root/.config/nvim
+
+# ---------- ---------- ---------- ----------
