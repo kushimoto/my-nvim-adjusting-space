@@ -11,13 +11,18 @@ if dein#load_state('$HOME/.cache/dein')
   call dein#begin('$HOME/.cache/dein')
 
   " TOML ファイルのパスを変数に代入
-  let s:toml_dir = '$HOME/.config/nvim/toml'
-  let s:toml = s:toml_dir . '/dein.toml'
-  let s:lazy_toml = s:toml_dir . '/dein_lazy.toml'
+  let s:nvim_dir = '$HOME/.config/nvim'
+  let s:toml = s:nvim_dir . '/toml/dein.toml'
+  let s:lazy_toml = s:nvim_dir . '/toml/dein_lazy.toml'
+  let s:local_toml = s:nvim_dir . '/toml/local/dein.toml'
+  let s:local_lazy_toml = s:nvim_dir . '/toml/local/dein_lazy.toml'
+
 
   " TOML ファイルを読み込む
   call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:local_toml, {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#load_toml(s:local_lazy_toml, {'lazy': 1})
 
   " Required:
   call dein#end()
