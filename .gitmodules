@@ -1,3 +1,0 @@
-[submodule "editor/config/global"]
-	path = editor/config/global
-	url = https://github.com/kushimoto/my-nvim-global-config

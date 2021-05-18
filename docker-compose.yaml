@@ -7,7 +7,7 @@ services:
     container_name: ${APP_NAME}-editor-container
     tty: true
     volumes:
-      - ./editor/config/global:/root/.config/nvim
-      - ./editor/config/local:/root/.config/nvim/local
+      - ./editor/config/global:/home/developer/.config/nvim
+      - ./editor/config/local:/home/developer/.config/nvim/local
 
 # ---------- ---------- ---------- ----------

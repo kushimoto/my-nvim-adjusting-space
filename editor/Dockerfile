@@ -1,6 +1,20 @@
 FROM ubuntu:latest
 
-WORKDIR /root
+# user & shell
+RUN apt-get update && \
+    apt-get install -y sudo curl && \
+    sed -i.bak "s|$HOME:|$HOME:$SHELL|" /etc/passwd && \
+    useradd -m developer && \
+    gpasswd -a developer sudo && \
+    echo "developer:developer" | chpasswd && \
+    cd /home/developer && \
+    curl -o .git-prompt.sh -OL https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY ./.bashrc /home/developer/
+
+WORKDIR /home/developer
 
 # Shift timezone to Asia/Tokyo.
 RUN apt-get update && \
@@ -25,10 +39,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# ENV DEBIAN_FRONTEND=noninteractive
-
 RUN apt-get update && \
-    apt-get -y install curl git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip npm python3 python3-pip && \
+    apt-get -y install git ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip npm python3 python3-pip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -43,7 +55,15 @@ RUN curl -sL install-node.now.sh/lts > install-nodejs.sh && \
 RUN npm install -g neovim && \
     pip3 install --user pynvim
 
-RUN mkdir ~/.cache/dein && \
+USER developer
+
+RUN mkdir -p /home/developer/.cache/dein && \
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh && \
-    sh ./installer.sh ~/.cache/dein && \
-    rm -rf neovim install-nodejs.sh installer.sh
+    sh ./installer.sh /home/developer/.cache/dein
+
+USER root
+
+RUN  rm -rf neovim install-nodejs.sh installer.sh
+
+COPY ./entrypoint.sh /var/tmp/
+CMD bash -E /var/tmp/entrypoint.sh && /bin/bash
